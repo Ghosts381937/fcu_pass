@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/fcu_pass/static/css/main.c1eaf650.css",
+    "main.js": "/fcu_pass/static/js/main.56c8d5fc.js",
+    "index.html": "/fcu_pass/index.html",
+    "main.c1eaf650.css.map": "/fcu_pass/static/css/main.c1eaf650.css.map",
+    "main.56c8d5fc.js.map": "/fcu_pass/static/js/main.56c8d5fc.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c1eaf650.css",
+    "static/js/main.56c8d5fc.js"
+  ]
+}
