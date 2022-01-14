@@ -40,7 +40,8 @@ class ChangeNameButton extends React.Component {
   }
 
   getAllCacheData = async () => {
-    const url = "http://localhost:3000/";
+    const url = "https://fcu-d0813127.github.io/fcu_pass/";
+    // const url = "http://localhost:3000/";
     const names = await caches.keys();
     for (var i = 0; i < names.length; i++) {
       const cacheStorage = await caches.open(names[i]);
@@ -62,7 +63,8 @@ class ChangeNameButton extends React.Component {
   changeHandler = () => {
     const name = prompt("Please enter your name: ");
     this.setState({name: name});
-    this.addDataIntoCache("test", "http://localhost:3000/", name);
+    this.addDataIntoCache("test", "https://fcu-d0813127.github.io/fcu_pass/", name);
+    // this.addDataIntoCache("test", "http://localhost:3000/", name);
   }
 
   render() {
