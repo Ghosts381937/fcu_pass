@@ -3,20 +3,40 @@ import ReactDOM from "react-dom";
 import "./index.css";
 
 class FcuPass extends React.Component {
-  // dateConvert = () => {
+  constructor(props) {
+    super(props);
+    this.date = new Date();
+    this.generateDay();
+  }
 
-  // }
-
-  // getDate = () => {
-
-  // }
+  generateDay = () => {
+    let month = "";
+    let tmp = this.date.getMonth() + 1;
+    if (tmp < 10) {
+      month = `0${tmp}`;
+    }
+    else if (tmp < 100) {
+      month = `${tmp}`;
+    }
+    let date = "";
+    tmp = this.date.getUTCDate();
+    if (tmp < 10) {
+      date = `0${tmp}`;
+    }
+    else if (tmp < 100) {
+      date = `${tmp}`;
+    }
+    this.today = `${month}/${date}`;
+  }
 
   render() {
+    const className = `backgcolor${this.date.getDay()}`;
+
     return (
       <div className="body_item">
-        <div className="circle backgcolor">
+        <div className={`circle ${className}`}>
           <div className="content">
-            <div className="date">01/14</div>
+            <div className="date">{this.today}</div>
             <div className="dvtitle">{this.props.name}</div>
             <div className="ng-scope">
               <div className="dvtitle">自主健康管理</div>
@@ -63,8 +83,8 @@ class ChangeNameButton extends React.Component {
   changeHandler = () => {
     const name = prompt("Please enter your name: ");
     this.setState({name: name});
-    this.addDataIntoCache("test", "https://fcu-d0813127.github.io/fcu_pass/", name);
-    // this.addDataIntoCache("test", "http://localhost:3000/", name);
+    this.addDataIntoCache("name", "https://fcu-d0813127.github.io/fcu_pass/", name);
+    // this.addDataIntoCache("name", "http://localhost:3000/", name);
   }
 
   render() {

@@ -12,9 +12,40 @@
   flex-direction: column;
 }
 
-.backgcolor {
-  background-color: rgba(213, 128, 178, 1);
-  color: white;
+.backgcolor1
+{
+    background-color: rgba(0, 107, 86, 1);
+    color: white;
+}
+.backgcolor2
+{
+    background-color: rgba(0, 167, 222, 1);
+    color: white;
+}
+.backgcolor3
+{
+    background-color: rgba(0, 108, 146, 1);
+    color: white;
+}
+.backgcolor4
+{
+    background-color: rgba(122, 78, 155, 1);
+    color: white;
+}
+.backgcolor5
+{
+    background-color: rgba(213, 128, 178, 1);
+    color: white;
+}
+.backgcolor6
+{
+    background-color: rgba(226, 116, 16, 1);
+    color: white;
+}
+.backgcolor0
+{
+    background-color: rgba(248, 202, 18, 1);
+    color: white;
 }
 
 @keyframes breathe {
