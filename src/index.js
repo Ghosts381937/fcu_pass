@@ -67,7 +67,7 @@ class ChangeNameButton extends React.Component {
     super();
     this.state = {
       name: "",
-      isShow : false
+      isShow : true
     };
     this.getAllCacheData();
   }
