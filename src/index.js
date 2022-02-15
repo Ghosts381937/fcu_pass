@@ -20,7 +20,7 @@ class PassModal extends React.Component {
       month = `${tmp}`;
     }
     let date = "";
-    tmp = this.date.getUTCDate();
+    tmp = this.date.getDate();
     if (tmp < 10) {
       date = `0${tmp}`;
     }
