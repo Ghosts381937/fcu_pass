@@ -6,6 +6,7 @@ class FcuPass extends React.Component {
   constructor(props) {
     super(props);
     this.date = new Date();
+    console.log(this.date);
     this.generateDay();
   }
 
