@@ -1,8 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import  {Button,Modal,Form}  from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import "./index.css";
-
-class FcuPass extends React.Component {
+class PassModal extends React.Component {
   constructor(props) {
     super(props);
     this.date = new Date();
@@ -33,35 +34,49 @@ class FcuPass extends React.Component {
     const className = `backgcolor${this.date.getDay()}`;
 
     return (
-      <div className="body_item">
-        <div className={`circle ${className}`}>
-          <div className="content">
-            <div className="date">{this.today}</div>
-            <div className="dvtitle">{this.props.name}</div>
-            <div className="ng-scope">
-              <div className="dvtitle">自主健康管理</div>
-              <div className="pass">PASS</div>
+      <Modal show={this.props.isShow} centered={true}>
+        <Modal.Header style={{padding:'0px 10px'}}>
+          <Modal.Title style={{fontSize:'18px', fontWeight: 'bold', margin:'10px 0px'}}>PASS</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="body_item">
+            <div className={`circle ${className}`}>
+              <div className="content">
+                <div className="date">{this.today}</div>
+                <div className="dvtitle">{this.props.name}</div>
+                <div className="ng-scope">
+                  <div className="dvtitle">自主健康管理</div>
+                  <div className="pass">PASS</div>
+                </div>
+                <div className="footer">逢甲大學關心您</div>
+              </div>
             </div>
-            <div className="footer">逢甲大學關心您</div>
           </div>
-        </div>
-      </div>
+        </Modal.Body>
+        <Modal.Footer style={{padding:'7px 15px'}}>
+          <Button variant='primary' onClick={this.props.handleClose} style={{margin: '0px', background: '#337ab7'}}>關閉</Button>
+        </Modal.Footer>
+      </Modal>
     )
   }
 }
 
 class ChangeNameButton extends React.Component {
+  
   constructor() {
     super();
     this.state = {
-      name: ""
+      name: "",
+      isShow : true
     };
     this.getAllCacheData();
   }
+  handleClose = () => this.setState({isShow: false});
+  handleShow = () => this.setState({isShow: true});
 
   getAllCacheData = async () => {
-    const url = "https://fcu-d0813127.github.io/fcu_pass/";
-    // const url = "http://localhost:3000/";
+    // const url = "https://ghosts381937.github.io/fcu_pass/";
+    const url = "http://localhost:3000/";
     const names = await caches.keys();
     for (var i = 0; i < names.length; i++) {
       const cacheStorage = await caches.open(names[i]);
@@ -82,17 +97,24 @@ class ChangeNameButton extends React.Component {
 
   changeHandler = () => {
     const name = prompt("Please enter your name: ");
+    if (name == null) {
+      return;
+    }
     this.setState({name: name});
-    this.addDataIntoCache("name", "https://fcu-d0813127.github.io/fcu_pass/", name);
-    // this.addDataIntoCache("name", "http://localhost:3000/", name);
+    // this.addDataIntoCache("name", "https://ghosts381937.github.io/fcu_pass/", name);
+    this.addDataIntoCache("name", "http://localhost:3000/", name);
   }
 
   render() {
     return (
-      <div className="outside_button">
-        <FcuPass name={this.state.name}/>
-        <button className="button" onClick={this.changeHandler}>Change Name</button>
-      </div>
+        <div className="outside" style={{display:'block', height: "100vh", width: "100vw"}}>
+            <div className="img" />
+            <div className="outside_button" style={{display: "flex", top: "50%", left: "50%", position: "absolute", transform: "translate(-50%, -50%)", height: "auto"}}>
+                <button className="button" onClick={this.handleShow}>Show Pass</button>
+                <button className="button" onClick={this.changeHandler}>Change Name</button>
+            </div>
+            <PassModal name={this.state.name} isShow={this.state.isShow} handleClose={this.handleClose} />
+        </div>
     )
   }
 }
